@@ -19,4 +19,5 @@ steps:
       $json = @"
       {"id":2,"type":"Vsts","name":"2llTest","variables":{"Name":{"isSecret":false,"value":"Abhishek"},"Contact":{"value":"900000000"}}}
       "@
-      $pipeline = Invoke-RestMethod -Uri $url -Method Put -Body $json -ContentType "app
+      $pipeline = Invoke-RestMethod -Uri $url -Method Put -Body $json -ContentType "application/json" -Headers @{Authorization=("Basic {0}" -f $base64AuthInfo)}
+      Invoke-RestMethod -Uri $url -Method Get -Headers @{Authorization=("Basic {0}" -f $base64AuthInfo)}
