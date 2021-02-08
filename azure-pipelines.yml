@@ -1,0 +1,22 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: PowerShell@2
+  inputs:
+    targetType: inline
+    script: |
+      $base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(("{0}:{1}" -f "","u6kawbncdzkt5qdf6psyo3xob5n4v3j7wu22yb6stp6wbkcs7dna")))
+      $url = "https://dev.azure.com/RishabhAgarwal/practise/_apis/distributedtask/variablegroups/1?api-version=5.0-preview.1"
+      $json = @"
+      {"id":2,"type":"Vsts","name":"2llTest","variables":{"Name":{"isSecret":false,"value":"Abhishek"},"Contact":{"value":"900000000"}}}
+      "@
+      $pipeline = Invoke-RestMethod -Uri $url -Method Put -Body $json -ContentType "app
