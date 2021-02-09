@@ -14,10 +14,10 @@ steps:
   inputs:
     targetType: inline
     script: |
-      $base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(("{0}:{1}" -f "","u6kawbncdzkt5qdf6psyo3xob5n4v3j7wu22yb6stp6wbkcs7dna")))
+      $base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(("{0}:{1}" -f "","2xt5mnrygqsgm6z55fkybaer6ryd6e47p2g3wfg76ryqzvklhnqa")))
       $url = "https://dev.azure.com/RishabhAgarwal/practise/_apis/distributedtask/variablegroups/1?api-version=5.0-preview.1"
       $json = @"
-      {"id":2,"type":"Vsts","name":"2llTest","variables":{"Name":{"isSecret":false,"value":"Abhishek"},"Contact":{"value":"900000000"}}}
+      {"id":2,"type":"Vsts","name":"rishu","variables":{"Name":{"isSecret":false,"value":"Abhishek"},"Contact":{"value":"900000000"}}}
       "@
       $pipeline = Invoke-RestMethod -Uri $url -Method Put -Body $json -ContentType "application/json" -Headers @{Authorization=("Basic {0}" -f $base64AuthInfo)}
       Invoke-RestMethod -Uri $url -Method Get -Headers @{Authorization=("Basic {0}" -f $base64AuthInfo)}
